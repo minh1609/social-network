@@ -12,9 +12,8 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => {
-    res.send("Working");
-});
+//Define Route
+app.use("/api/stream/", require("./api/stream"));
 
 let port = process.env.PORT;
 if (port == null || port == "") {

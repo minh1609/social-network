@@ -1,6 +1,6 @@
 const bodyParser = require("body-parser");
 const express = require("express");
-
+const cors = require("cors");
 const connectDB = require("./db");
 
 const app = express();
@@ -11,13 +11,14 @@ app.use(
         extended: true
     })
 );
+app.use(cors);
 
 //Define Route
 app.use("/api/stream/", require("./api/stream"));
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-    port = 3000;
+    port = 3001;
 }
 
 app.listen(port, () => {

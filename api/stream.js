@@ -3,6 +3,8 @@ const Stream = require("../model/stream");
 const router = express.Router();
 
 // route: api/stream
+
+// get all stream in database
 // Public
 
 router.get("/", (req, res) => {
@@ -14,6 +16,7 @@ router.get("/", (req, res) => {
 
 router.post("/", (req, res) => {
     const { userId, title, description } = req.body;
+
     const newStream = new Stream({
         userId,
         title,
@@ -25,5 +28,7 @@ router.post("/", (req, res) => {
 
     res.send(newStream);
 });
+
+router.get("/:id", (req, res) => {});
 
 module.exports = router;

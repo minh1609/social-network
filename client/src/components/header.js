@@ -8,13 +8,12 @@ class header extends Component {
         return (
             <div className="ui secondary pointing menu">
                 <NavLink to="/" className="item">
-                    StreamReact
+                    <h1>Live Stream</h1>
                 </NavLink>
                 <div className="right menu">
-                    <NavLink to="/" className="item">
-                        All Streams
-                    </NavLink>
-                    <GoogleAuth />
+                    <h1>
+                        <GoogleAuth />
+                    </h1>
                 </div>
             </div>
         );

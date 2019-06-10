@@ -5,20 +5,12 @@ const connectDB = require("./db");
 const app = express();
 connectDB();
 
-app.use(
-    bodyParser.urlencoded({
-        extended: true
-    })
-);
+app.use(bodyParser.json());
 
 //Define Route
-app.use("/api/stream/", require("./api/stream"));
+require("./routes/stream")(app);
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-    port = 5000;
-}
-
-app.listen(port, () => {
-    console.log("Running on port" + port);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`App running on ${PORT}`);
 });

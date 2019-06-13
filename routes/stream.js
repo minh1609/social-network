@@ -7,21 +7,19 @@ const Stream = require("../model/stream");
 // Public
 
 module.exports = app => {
-    app.get("/api/stream", (req, res) => {
-        Stream.find({}, (err, result) => {
-            if (err) res.send(err);
-            res.send(result);
-        });
+    app.get("/api/stream", async (req, res) => {
+        result = await Stream.find({});
+
+        res.send(result);
     });
 
-    app.get("/api/stream/:id", (req, res) => {
+    app.get("/api/stream/:id", async (req, res) => {
         const id = req.params.id;
-        Stream.findById(id, (err, result) => {
-            res.send(result);
-        });
+        result = await Stream.findById(id);
+        res.send(result);
     });
 
-    app.post("/api/stream", (req, res) => {
+    app.post("/api/stream", async (req, res) => {
         const { userId, title, description } = req.body;
 
         console.log(req.body);
@@ -31,8 +29,19 @@ module.exports = app => {
             title,
             description
         });
-        newStream.save();
+        await newStream.save();
+        res.status(200).send();
+    });
 
-        res.send(userId);
+    app.delete("/api/stream/:id", async (req, res) => {
+        const id = req.params.id;
+        await Stream.findByIdAndDelete(id);
+        res.send();
+    });
+
+    app.patch("/api/stream/:id", async (req, res) => {
+        const id = req.params.id;
+        await Stream.findByIdAndUpdate(id, req.body);
+        res.send();
     });
 };

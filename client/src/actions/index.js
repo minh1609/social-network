@@ -20,7 +20,6 @@ export const createStream = formValues => async (dispatch, getState) => {
 
     const response = await stream.post("/stream", { ...formValues, userId });
     dispatch({ type: "CREATE_STREAM", payload: response.data });
-    console.log(response);
 
     //navigate to home if success
     history.push("/");

@@ -23,13 +23,11 @@ class StreamCreate extends Component {
     }
 }
 
-const mapStatetoProps = () => {};
-
 //connect redux action and redux form
 
 export default connect(
     //first arguement: function
-    mapStatetoProps,
+    null,
     //second arg: object contain action creator
     { createStream }
 )(StreamCreate);

@@ -1,12 +1,7 @@
 const express = require("express");
 const Stream = require("../model/stream");
 
-// route: api/stream
-
-// get all stream in database
-// Public
-
-module.exports = app => {
+module.exports = (app = express()) => {
     app.get("/api/stream", async (req, res) => {
         result = await Stream.find({});
 
@@ -30,7 +25,7 @@ module.exports = app => {
             description
         });
         await newStream.save();
-        res.status(200).send();
+        res.send();
     });
 
     app.delete("/api/stream/:id", async (req, res) => {

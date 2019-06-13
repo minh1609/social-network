@@ -31,7 +31,7 @@ class StreamList extends Component {
         }
     };
 
-    //render create new stream button if user is signed in
+    //render create new stream button if user is authenticated
     renderCreate = () => {
         if (this.props.isSignedIn) {
             return (
@@ -46,18 +46,22 @@ class StreamList extends Component {
 
     renderList() {
         return this.props.streams.map(stream => {
-            return (
-                <div className="item" key={stream._id}>
-                    {this.renderAdmin(stream)}
-                    <i className="large middle aligned icon camera" />
-                    <div className="content">
-                        <Link to={`/streams/${stream._id}`}>
-                            {stream.title}
-                        </Link>
-                        <div className="description">{stream.description}</div>
+            if (stream._id) {
+                return (
+                    <div className="item" key={stream._id}>
+                        {this.renderAdmin(stream)}
+                        <i className="large middle aligned icon camera" />
+                        <div className="content">
+                            <Link to={`/streams/${stream._id}`}>
+                                {stream.title}
+                            </Link>
+                            <div className="description">
+                                {stream.description}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            );
+                );
+            }
         });
     }
 

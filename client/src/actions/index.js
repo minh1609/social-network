@@ -2,10 +2,10 @@ import stream from "../apis/stream";
 
 import history from "../history";
 
-export const signIn = userId => {
+export const signIn = (userId, userName) => {
     return {
         type: "SIGN_IN",
-        payload: userId
+        payload: { userId, userName }
     };
 };
 
@@ -16,9 +16,13 @@ export const signOut = () => {
 };
 
 export const createStream = formValues => async (dispatch, getState) => {
-    const { userId } = getState().auth;
+    const { userId, userName } = getState().auth;
 
-    const response = await stream.post("/stream", { ...formValues, userId });
+    const response = await stream.post("/stream", {
+        ...formValues,
+        userId,
+        userName
+    });
     dispatch({ type: "CREATE_STREAM", payload: response.data });
 
     //navigate to home if success

@@ -15,16 +15,19 @@ module.exports = (app = express()) => {
     });
 
     app.post("/api/stream", async (req, res) => {
-        const { userId, title, description } = req.body;
+        const { userId, title, description, userName } = req.body;
 
         console.log(req.body);
 
         const newStream = new Stream({
             userId,
             title,
-            description
+            description,
+            userName
         });
         await newStream.save();
+        console.log(newStream);
+
         res.send();
     });
 

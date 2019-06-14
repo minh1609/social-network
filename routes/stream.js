@@ -17,8 +17,6 @@ module.exports = (app = express()) => {
     app.post("/api/stream", async (req, res) => {
         const { userId, title, description, userName, date, avatar } = req.body;
 
-        console.log(req.body);
-
         const newStream = new Stream({
             userId,
             title,

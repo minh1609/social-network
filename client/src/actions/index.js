@@ -2,10 +2,10 @@ import stream from "../apis/stream";
 
 import history from "../history";
 
-export const signIn = (userId, userName) => {
+export const signIn = (userId, userName, avatar) => {
     return {
         type: "SIGN_IN",
-        payload: { userId, userName }
+        payload: { userId, userName, avatar }
     };
 };
 
@@ -16,12 +16,21 @@ export const signOut = () => {
 };
 
 export const createStream = formValues => async (dispatch, getState) => {
-    const { userId, userName } = getState().auth;
+    const { userId, userName, avatar } = getState().auth;
+    let date = new Date();
+    date = await date.toLocaleString("en-US", {
+        day: "2-digit",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric"
+    });
 
     const response = await stream.post("/stream", {
         ...formValues,
         userId,
-        userName
+        userName,
+        avatar,
+        date
     });
     dispatch({ type: "CREATE_STREAM", payload: response.data });
 

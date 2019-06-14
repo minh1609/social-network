@@ -22,8 +22,8 @@ class GoogleAuth extends Component {
                     //test with chrome console
                     window.auth = this.auth;
 
-                    //username
-                    console.log(this.auth.currentUser.Ab.w3.ig);
+                    //username this.auth.currentUser.Ab.w3.ig
+                    console.log(this.auth.currentUser.Ab.w3.Paa);
                 });
         });
     }
@@ -42,7 +42,10 @@ class GoogleAuth extends Component {
                 this.auth.currentUser.get().getId(),
 
                 //user name
-                this.auth.currentUser.Ab.w3.ig
+                this.auth.currentUser.Ab.w3.ig,
+
+                //avatar link
+                this.auth.currentUser.Ab.w3.Paa
             );
         } else {
             this.props.signOut();

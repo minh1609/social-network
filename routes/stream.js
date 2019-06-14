@@ -15,7 +15,7 @@ module.exports = (app = express()) => {
     });
 
     app.post("/api/stream", async (req, res) => {
-        const { userId, title, description, userName } = req.body;
+        const { userId, title, description, userName, date, avatar } = req.body;
 
         console.log(req.body);
 
@@ -23,7 +23,9 @@ module.exports = (app = express()) => {
             userId,
             title,
             description,
-            userName
+            userName,
+            date,
+            avatar
         });
         await newStream.save();
         console.log(newStream);

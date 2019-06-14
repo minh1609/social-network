@@ -9,7 +9,8 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 isSignedIn: true,
                 userId: action.payload.userId,
-                userName: action.payload.userName
+                userName: action.payload.userName,
+                avatar: action.payload.avatar
             };
         case "SIGN_OUT":
             return { isSignedIn: false, userId: null };

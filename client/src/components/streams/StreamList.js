@@ -48,21 +48,20 @@ class StreamList extends Component {
         return this.props.streams.map(stream => {
             if (stream._id) {
                 return (
-                    <div className="item" key={stream._id}>
-                        {this.renderAdmin(stream)}
-                        <i className="large middle aligned icon camera" />
-                        <div className="content">
-                            <Link
-                                to={`/streams/${stream._id}`}
-                                style={{ marginRight: "10px" }}
-                            >
-                                {stream.title}
-                            </Link>
-                            <div className="ui tag label">
-                                created by {stream.userName}
+                    <div className="event" key={stream._id}>
+                        <div class="label">
+                            <img src={stream.avatar} alt="avatar" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                <span className="user">{stream.title}</span>{" "}
+                                added you as a friend
+                                <div class="date">{stream.date}</div>
                             </div>
-                            <div className="description">
-                                {stream.description}
+                            <div class="meta">
+                                <a class="like">
+                                    <i class="like icon" /> 4 Likes
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -75,7 +74,7 @@ class StreamList extends Component {
         return (
             <div>
                 <h2>Streams</h2>
-                <div className="ui celled list">{this.renderList()}</div>
+                <div className="ui feed">{this.renderList()}</div>
                 {this.renderCreate()}
             </div>
         );

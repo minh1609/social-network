@@ -13,19 +13,9 @@ class StreamList extends Component {
     renderAdmin = stream => {
         if (stream.userId === this.props.currentUserId) {
             return (
-                <div className="right floated content">
-                    <Link
-                        to={`/streams/edit/${stream._id}`}
-                        className="ui button primary"
-                    >
-                        Edit
-                    </Link>
-                    <Link
-                        to={`/streams/delete/${stream._id}`}
-                        className="ui button negative"
-                    >
-                        Delete
-                    </Link>
+                <div>
+                    <Link to={`/streams/edit/${stream._id}`}> Edit </Link>
+                    <Link to={`/streams/delete/${stream._id}`}> Delete</Link>
                 </div>
             );
         }
@@ -46,22 +36,25 @@ class StreamList extends Component {
 
     renderList() {
         return this.props.streams.map(stream => {
-            if (stream._id) {
+            if (stream._id && stream) {
                 return (
                     <div className="event" key={stream._id}>
                         <div class="label">
                             <img src={stream.avatar} alt="avatar" />
                         </div>
                         <div class="content">
-                            <div class="summary">
-                                <span className="user">{stream.title}</span>{" "}
-                                added you as a friend
-                                <div class="date">{stream.date}</div>
-                            </div>
+                            <Link to={`/streams/${stream._id}`}>
+                                <div class="summary">
+                                    <span className="user">{stream.title}</span>{" "}
+                                    <div class="date">
+                                        {stream.date} by {stream.userName}
+                                    </div>
+                                </div>
+                            </Link>
                             <div class="meta">
-                                <a class="like">
-                                    <i class="like icon" /> 4 Likes
-                                </a>
+                                <span className="like">
+                                    {this.renderAdmin(stream)}
+                                </span>
                             </div>
                         </div>
                     </div>

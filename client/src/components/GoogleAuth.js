@@ -19,9 +19,6 @@ class GoogleAuth extends Component {
                     this.onAuthChange(this.auth.isSignedIn.get());
                     this.auth.isSignedIn.listen(this.onAuthChange);
 
-                    //test with chrome console
-                    window.auth = this.auth;
-
                     //username this.auth.currentUser.Ab.w3.ig
                     console.log(this.auth.currentUser.Ab.w3.Paa);
                 });

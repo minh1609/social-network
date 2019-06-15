@@ -10,7 +10,6 @@ import StreamShow from "./streams/StreamShow";
 import Header from "./header";
 import history from "../history";
 class App extends Component {
-    state = {};
     render() {
         return (
             <div className="ui container">

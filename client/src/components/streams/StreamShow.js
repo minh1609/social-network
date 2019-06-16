@@ -3,16 +3,8 @@ import { fetchStream } from "../../actions";
 import { connect } from "react-redux";
 
 export class StreamShow extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     async componentDidMount() {
         await this.props.fetchStream(this.props.match.params.id);
-    }
-
-    componentDidUpdate() {
-        if (this.player || !this.props.stream) return;
     }
 
     //render instruction if user is authenticated

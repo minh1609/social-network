@@ -8,7 +8,6 @@ connectDB();
 app.use(bodyParser.json());
 
 //Define Route
-
 require("./routes/stream")(app);
 
 if (process.env.NODE_ENV === "production") {

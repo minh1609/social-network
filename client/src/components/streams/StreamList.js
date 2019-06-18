@@ -53,6 +53,7 @@ class StreamList extends Component {
                             </Link>
                             <div class="meta">
                                 <span className="like">
+                                    {stream.description}
                                     {this.renderAdmin(stream)}
                                 </span>
                             </div>

@@ -55,8 +55,6 @@ class GoogleAuth extends Component {
         } else if (this.props.isSignedIn === true) {
             return (
                 <React.Fragment>
-                    <h4>Hi, {this.auth.currentUser.Ab.w3.ig}</h4>
-
                     <button
                         onClick={this.onSignOutClick}
                         className="ui red google button"

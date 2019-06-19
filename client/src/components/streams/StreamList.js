@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
+import "./transition.css";
 import { fetchStreams } from "../../actions";
 
 class StreamList extends Component {
@@ -22,43 +24,65 @@ class StreamList extends Component {
     };
 
     //render create new stream button if user is authenticated
-    renderCreate = () => {
+    renderCreateButton = () => {
         if (this.props.isSignedIn) {
             return (
-                <div style={{ textAlign: "right" }}>
+                <div style={{ margin: "10px auto" }}>
                     <Link to="/streams/new" className="ui button primary">
-                        Create
+                        Click me if you want
                     </Link>
                 </div>
             );
         }
     };
 
+    renderDescription(description = "") {
+        if (description.length > 50) {
+            return (
+                <div className="ui message">
+                    {description.substring(0, 50)} ......
+                </div>
+            );
+        } else {
+            return <div className="ui message">{description}</div>;
+        }
+    }
+
     renderList() {
         return this.props.streams.map(stream => {
             if (stream._id && stream) {
                 return (
-                    <div className="event" key={stream._id}>
-                        <div class="label">
-                            <img src={stream.avatar} alt="avatar" />
-                        </div>
-                        <div class="content">
-                            <Link to={`/streams/${stream._id}`}>
-                                <div class="summary">
-                                    <span className="user">{stream.title}</span>{" "}
-                                    <div class="date">
-                                        {stream.date} by {stream.userName}
+                    <CSSTransition
+                        key={stream._id}
+                        classNames="item"
+                        timeout={1000}
+                    >
+                        <div className="event">
+                            <div class="label">
+                                <img src={stream.avatar} alt="avatar" />
+                            </div>
+                            <div class="content">
+                                <Link to={`/streams/${stream._id}`}>
+                                    <div class="summary">
+                                        <span className="user">
+                                            {stream.title}
+                                        </span>{" "}
+                                        <div class="date">
+                                            {stream.date} by {stream.userName}
+                                        </div>
                                     </div>
+                                </Link>
+                                <div class="meta">
+                                    <span className="like">
+                                        {this.renderDescription(
+                                            stream.description
+                                        )}
+                                        {this.renderAdmin(stream)}
+                                    </span>
                                 </div>
-                            </Link>
-                            <div class="meta">
-                                <span className="like">
-                                    {stream.description}
-                                    {this.renderAdmin(stream)}
-                                </span>
                             </div>
                         </div>
-                    </div>
+                    </CSSTransition>
                 );
             }
         });
@@ -67,9 +91,11 @@ class StreamList extends Component {
     render() {
         return (
             <div>
-                <h2>Streams</h2>
-                <div className="ui feed">{this.renderList()}</div>
-                {this.renderCreate()}
+                <h3>Hi, {this.props.userName}, want to share something </h3>
+                {this.renderCreateButton()}
+                <TransitionGroup className="todo-list">
+                    <div className="ui feed">{this.renderList()}</div>
+                </TransitionGroup>
             </div>
         );
     }
@@ -80,7 +106,8 @@ const mapStateToProps = state => {
         //convert  object to array
         streams: Object.values(state.streams),
         currentUserId: state.auth.userId,
-        isSignedIn: state.auth.isSignedIn
+        isSignedIn: state.auth.isSignedIn,
+        userName: state.auth.userName
     };
 };
 

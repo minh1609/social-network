@@ -8,7 +8,7 @@ class header extends Component {
         return (
             <div className="ui secondary pointing menu">
                 <NavLink to="/" className="item">
-                    <h1>Live Stream</h1>
+                    <h1>Social Network</h1>
                 </NavLink>
                 <div className="right menu">
                     <h1>

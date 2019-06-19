@@ -15,8 +15,6 @@ class StreamCreate extends Component {
             // Field will pass label props to component props(it is renderInput is this case)
             //handle submit is a props created by redux form
             <React.Fragment>
-                <h3>Create Stream</h3>
-
                 <StreamForm onSubmit={this.onSubmit} />
             </React.Fragment>
         );

@@ -36,11 +36,12 @@ class StreamList extends Component {
         }
     };
 
-    renderDescription(description = "") {
+    renderDescription(description = "", id = 0) {
         if (description.length > 50) {
             return (
                 <div className="ui message">
-                    {description.substring(0, 50)} ......
+                    {description.substring(0, 50)}{" "}
+                    <Link to={`/streams/${id}`}> ... Read more</Link>
                 </div>
             );
         } else {
@@ -75,7 +76,8 @@ class StreamList extends Component {
                                 <div class="meta">
                                     <span className="like">
                                         {this.renderDescription(
-                                            stream.description
+                                            stream.description,
+                                            stream._id
                                         )}
                                         {this.renderAdmin(stream)}
                                     </span>

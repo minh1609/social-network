@@ -63,7 +63,7 @@ const validate = formValue => {
     if (!formValue.title) {
         error.title = "you must enter title";
     } else if (!formValue.description) {
-        error.title = "you must enter dis";
+        error.title = "you must enter discription";
     }
 
     return error;

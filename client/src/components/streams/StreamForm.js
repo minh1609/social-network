@@ -19,7 +19,11 @@ class StreamForm extends Component {
         return (
             <div className="field">
                 <label>{formProps.label}</label>
-                <input {...formProps.input} autoCorrect="off" />
+                <input
+                    {...formProps.input}
+                    autoCorrect="off"
+                    autoComplete="off"
+                />
                 {/* meta hold the error information */}
                 {this.renderError(formProps.meta)}
             </div>

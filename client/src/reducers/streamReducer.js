@@ -2,6 +2,7 @@ export default (state = {}, action) => {
     //convert object to array, each
 
     if (action.type === "FETCH_STREAMS") {
+        //convert array to object
         const mapMyArray = (array, param) =>
             Object.assign(
                 {},

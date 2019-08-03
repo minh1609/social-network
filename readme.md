@@ -1,6 +1,6 @@
 ## Social Network
 
-Share everything
+Share everything to the world
 
 ### Front End
 
@@ -13,3 +13,8 @@ Share everything
 -   Node
 -   Express
 -   Mongo
+
+###
+
+Object based state
+Convert Array to Object, Object to Array
